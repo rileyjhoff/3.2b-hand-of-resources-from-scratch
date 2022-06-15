@@ -28,6 +28,21 @@ describe('backend-express-template routes', () => {
     ]);
   });
 
+  it('POST /golfers should add a golfer', async () => {
+    const resp = await request(app).post('/golfers').send({
+      name: 'Cameron Young',
+      ranking: 31,
+      wins: 3,
+      age: 25,
+    });
+    expect(resp.status).toEqual(200);
+    expect(resp.body.id).not.toBeUndefined();
+    expect(resp.body.name).toEqual('Cameron Young');
+    expect(resp.body.ranking).toEqual(31);
+    expect(resp.body.wins).toEqual(3);
+    expect(resp.body.age).toEqual(25);
+  });
+
   afterAll(() => {
     pool.end();
   });
