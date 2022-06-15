@@ -7,7 +7,8 @@ describe('backend-express-template routes', () => {
   beforeEach(() => {
     return setup(pool);
   });
-  it('GET /golfers returns list of golfers', async () => {
+
+  it('GET /golfers should return a list of golfers', async () => {
     const resp = await request(app).get('/golfers');
     expect(resp.status).toEqual(200);
     expect(resp.body).toEqual([
@@ -18,6 +19,15 @@ describe('backend-express-template routes', () => {
       { id: 5, name: 'Davis Riley', ranking: 85, wins: 2, age: 25 },
     ]);
   });
+
+  it('GET /golfers/:id should return golfer detail', async () => {
+    const resp = await request(app).get('/golfers/1');
+    expect(resp.status).toEqual(200);
+    expect(resp.body).toEqual([
+      { id: 1, name: 'Will Zalatoris', ranking: 14, wins: 1, age: 25 },
+    ]);
+  });
+
   afterAll(() => {
     pool.end();
   });
