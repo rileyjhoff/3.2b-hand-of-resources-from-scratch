@@ -39,6 +39,17 @@ describe('backend-express-template routes', () => {
     ]);
   });
 
+  it('GET /teams/:id should return team detail', async () => {
+    const resp = await request(app).get('/teams/1');
+    expect(resp.status).toEqual(200);
+    expect(resp.body).toEqual({
+      id: 1,
+      name: 'Portland Trail Blazers',
+      league: 'NBA',
+      sport: 'basketball',
+    });
+  });
+
   afterAll(() => {
     pool.end();
   });
