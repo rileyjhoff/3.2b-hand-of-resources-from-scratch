@@ -71,6 +71,13 @@ describe('backend-express-template routes', () => {
     expect(resp.body.name).toEqual('Denver Nuggets');
   });
 
+  it('DELETE /teams/:id should delete a team', async () => {
+    const resp1 = await request(app).delete('/teams/1');
+    expect(resp1.status).toEqual(200);
+    const resp2 = await request(app).get('/teams/1');
+    expect(resp2.body).toEqual('');
+  });
+
   afterAll(() => {
     pool.end();
   });
