@@ -86,7 +86,7 @@ describe('backend-express-template routes', () => {
     expect(resp.body.rt_rating).toEqual('70%');
   });
 
-  it('POST /tv-series/:id should update a TV Series', async () => {
+  it('PUT /tv-series/:id should update a TV Series', async () => {
     const resp = await request(app)
       .put('/tv-series/1')
       .send({ imdb_rating: 10, rt_rating: '100%' });

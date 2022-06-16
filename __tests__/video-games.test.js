@@ -8,7 +8,7 @@ describe('backend-express-template routes', () => {
     return setup(pool);
   });
 
-  it('GET /video-games should return a list of Video Games', async () => {
+  it('GET /video-games should return a list of video games', async () => {
     const resp = await request(app).get('/video-games');
     expect(resp.status).toEqual(200);
     expect(resp.body).toEqual([
@@ -70,6 +70,15 @@ describe('backend-express-template routes', () => {
     expect(resp.body.genre).toEqual(['Open World', 'FPS']);
     expect(resp.body.is_free).toEqual(true);
     expect(resp.body.active_players).toEqual('178,829');
+  });
+
+  it('PUT /video-games/:id should update a video game', async () => {
+    const resp = await request(app)
+      .put('/video-games/3')
+      .send({ is_free: false, active_players: '1,000,000' });
+    expect(resp.status).toEqual(200);
+    expect(resp.body.is_free).toEqual(false);
+    expect(resp.body.active_players).toEqual('1,000,000');
   });
 
   afterAll(() => {
