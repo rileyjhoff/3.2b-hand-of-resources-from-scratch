@@ -72,6 +72,15 @@ describe('backend-express-template routes', () => {
     expect(resp.body.rt_rating).toEqual('70%');
   });
 
+  it('POST /tv-series/:id should update a TV Series', async () => {
+    const resp = await request(app)
+      .put('/tv-series/1')
+      .send({ imdb_rating: 10, rt_rating: '100%' });
+    expect(resp.status).toEqual(200);
+    expect(resp.body.imdb_rating).toEqual(10);
+    expect(resp.body.rt_rating).toEqual('100%');
+  });
+
   afterAll(() => {
     pool.end();
   });
