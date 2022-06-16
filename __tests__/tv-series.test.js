@@ -51,18 +51,25 @@ describe('backend-express-template routes', () => {
     ]);
   });
 
-  it('GET /tv-series/:id should return TV Series detail', async () => {
-    const resp = await request(app).get('/tv-series/1');
+  it('POST /tv-series should add a TV Series', async () => {
+    const resp = await request(app)
+      .post('/tv-series')
+      .send({
+        title: 'Halo',
+        genre: ['Action', 'Adventure', 'Sci-Fi'],
+        original_network: 'Paramount+',
+        seasons: 1,
+        imdb_rating: 7,
+        rt_rating: '70%',
+      });
     expect(resp.status).toEqual(200);
-    expect(resp.body).toEqual({
-      id: 1,
-      title: 'Barry',
-      genre: ['Action', 'Comedy', 'Crime'],
-      original_network: 'HBO',
-      seasons: 3,
-      imdb_rating: 8,
-      rt_rating: '99%',
-    });
+    expect(resp.body.id).not.toBeUndefined();
+    expect(resp.body.title).toEqual('Halo');
+    expect(resp.body.genre).toEqual(['Action', 'Adventure', 'Sci-Fi']);
+    expect(resp.body.original_network).toEqual('Paramount+');
+    expect(resp.body.seasons).toEqual(1);
+    expect(resp.body.imdb_rating).toEqual(7);
+    expect(resp.body.rt_rating).toEqual('70%');
   });
 
   afterAll(() => {
