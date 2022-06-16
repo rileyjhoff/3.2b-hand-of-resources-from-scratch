@@ -50,6 +50,19 @@ describe('backend-express-template routes', () => {
     });
   });
 
+  it('POST /teams should add a team', async () => {
+    const resp = await request(app).post('/teams').send({
+      name: 'Colorado Rockies',
+      league: 'MLB',
+      sport: 'baseball',
+    });
+    expect(resp.status).toEqual(200);
+    expect(resp.body.id).not.toBeUndefined();
+    expect(resp.body.name).toEqual('Colorado Rockies');
+    expect(resp.body.league).toEqual('MLB');
+    expect(resp.body.sport).toEqual('baseball');
+  });
+
   afterAll(() => {
     pool.end();
   });
