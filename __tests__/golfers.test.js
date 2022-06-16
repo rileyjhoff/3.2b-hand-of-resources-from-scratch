@@ -23,9 +23,13 @@ describe('backend-express-template routes', () => {
   it('GET /golfers/:id should return golfer detail', async () => {
     const resp = await request(app).get('/golfers/1');
     expect(resp.status).toEqual(200);
-    expect(resp.body).toEqual([
-      { id: 1, name: 'Will Zalatoris', ranking: 14, wins: 1, age: 25 },
-    ]);
+    expect(resp.body).toEqual({
+      id: 1,
+      name: 'Will Zalatoris',
+      ranking: 14,
+      wins: 1,
+      age: 25,
+    });
   });
 
   it('POST /golfers should add a golfer', async () => {
@@ -41,6 +45,15 @@ describe('backend-express-template routes', () => {
     expect(resp.body.ranking).toEqual(31);
     expect(resp.body.wins).toEqual(3);
     expect(resp.body.age).toEqual(25);
+  });
+
+  it('PUT /golfers/:id should update a golfer', async () => {
+    const resp = await request(app)
+      .put('/golfers/1')
+      .send({ ranking: 1, wins: 2 });
+    expect(resp.status).toEqual(200);
+    expect(resp.body.ranking).toEqual(1);
+    expect(resp.body.wins).toEqual(2);
   });
 
   afterAll(() => {
