@@ -76,14 +76,14 @@ CREATE TABLE video_games (
   id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   title TEXT NOT NULL,
   genre TEXT [] NOT NULL,
-  isFree BOOLEAN NOT NULL,
-  active_players TEXT NOT NULL,
+  is_free BOOLEAN NOT NULL,
+  active_players TEXT NOT NULL
 );
 
 INSERT INTO video_games (
   title, 
   genre,
-  isFree, 
+  is_free, 
   active_players
   ) 
 VALUES 
