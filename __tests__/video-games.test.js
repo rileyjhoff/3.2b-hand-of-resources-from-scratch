@@ -43,6 +43,18 @@ describe('backend-express-template routes', () => {
     ]);
   });
 
+  it('GET /video-games/:id should return video game detail', async () => {
+    const resp = await request(app).get('/video-games/1');
+    expect(resp.status).toEqual(200);
+    expect(resp.body).toEqual({
+      id: 1,
+      title: 'FIFA 22',
+      genre: ['Sports'],
+      is_free: false,
+      active_players: '108,168',
+    });
+  });
+
   afterAll(() => {
     pool.end();
   });

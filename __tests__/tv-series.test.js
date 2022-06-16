@@ -51,6 +51,20 @@ describe('backend-express-template routes', () => {
     ]);
   });
 
+  it('GET /tv-series/:id should return TV Series detail', async () => {
+    const resp = await request(app).get('/tv-series/1');
+    expect(resp.status).toEqual(200);
+    expect(resp.body).toEqual({
+      id: 1,
+      title: 'Barry',
+      genre: ['Action', 'Comedy', 'Crime'],
+      original_network: 'HBO',
+      seasons: 3,
+      imdb_rating: 8,
+      rt_rating: '99%',
+    });
+  });
+
   it('POST /tv-series should add a TV Series', async () => {
     const resp = await request(app)
       .post('/tv-series')

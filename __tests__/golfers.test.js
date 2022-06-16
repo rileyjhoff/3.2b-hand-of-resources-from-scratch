@@ -56,7 +56,7 @@ describe('backend-express-template routes', () => {
     expect(resp.body.wins).toEqual(2);
   });
 
-  it('Delete /golfers/:id should delete a golfer', async () => {
+  it('DELETE /golfers/:id should delete a golfer', async () => {
     const resp1 = await request(app).delete('/golfers/5');
     expect(resp1.status).toEqual(200);
     const resp2 = await request(app).get('/golfers/5');
