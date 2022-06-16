@@ -63,6 +63,14 @@ describe('backend-express-template routes', () => {
     expect(resp.body.sport).toEqual('baseball');
   });
 
+  it('PUT /teams/:id should update a team', async () => {
+    const resp = await request(app)
+      .put('/teams/1')
+      .send({ name: 'Denver Nuggets' });
+    expect(resp.status).toEqual(200);
+    expect(resp.body.name).toEqual('Denver Nuggets');
+  });
+
   afterAll(() => {
     pool.end();
   });
