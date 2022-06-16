@@ -55,6 +55,23 @@ describe('backend-express-template routes', () => {
     });
   });
 
+  it('POST /video-games should add a video game', async () => {
+    const resp = await request(app)
+      .post('/video-games')
+      .send({
+        title: 'Destiny 2',
+        genre: ['Open World', 'FPS'],
+        is_free: true,
+        active_players: '178,829',
+      });
+    expect(resp.status).toEqual(200);
+    expect(resp.body.id).not.toBeUndefined();
+    expect(resp.body.title).toEqual('Destiny 2');
+    expect(resp.body.genre).toEqual(['Open World', 'FPS']);
+    expect(resp.body.is_free).toEqual(true);
+    expect(resp.body.active_players).toEqual('178,829');
+  });
+
   afterAll(() => {
     pool.end();
   });
