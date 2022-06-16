@@ -69,3 +69,25 @@ VALUES
   ('Obi-Wan Kenobi', '{"Action","Adventure","Sci-Fi"}', 'Disney+', 1, 7.3, '84%'),
   ('Severance', '{"Drama","Mystery","Sci-Fi"}', 'Apple TV', 1, 8.7, '98%'),
   ('South Park', '{"Animation","Comedy"}', 'Comedy Central', 25, 8.7, '80%');
+
+DROP TABLE IF EXISTS video_games;
+
+CREATE TABLE video_games (
+  id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  title TEXT NOT NULL,
+  genre TEXT [] NOT NULL,
+  isFree BOOLEAN NOT NULL,
+  active_players TEXT NOT NULL,
+);
+
+INSERT INTO video_games (
+  title, 
+  genre,
+  isFree, 
+  active_players
+  ) 
+VALUES 
+  ('FIFA 22', '{"Sports"}', false, '108,168'),
+  ('APEX Legends', '{"FPS","Battle Royale"}', true, '360,428'),
+  ('Lost Ark', '{"MMORPG","Action","Fantasy"}', true, '885,379'),
+  ('Dota 2', '{"Multiplayer Online Battle Arena", "Strategy"}', true, '695,841');
