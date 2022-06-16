@@ -43,3 +43,29 @@ VALUES
   ('Colorado Avalanche', 'NHL', 'hockey'),
   ('Portland Timbers', 'MLS', 'soccer'),
   ('Chelsea FC', 'EPL', 'soccer');
+
+DROP TABLE IF EXISTS tv_series;
+
+CREATE TABLE tv_series (
+  id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  title VARCHAR NOT NULL,
+  genre TEXT [] NOT NULL,
+  original_network VARCHAR NOT NULL,
+  seasons INT NOT NULL,
+  imdb_rating INT NOT NULL,
+  rt_rating VARCHAR NOT NULL
+);
+
+INSERT INTO tv_series (
+  title, 
+  genre,
+  original_network,
+  seasons,
+  imdb_rating,
+  rt_rating
+  ) 
+VALUES 
+  ('Barry', '{"Action","Comedy","Crime"}', 'HBO', 3, 8.4, '99%'),
+  ('Obi-Wan Kenobi', '{"Action","Adventure","Sci-Fi"}', 'Disney+', 1, 7.3, '84%'),
+  ('Severance', '{"Drama","Mystery","Sci-Fi"}', 'Apple TV', 1, 8.7, '98%'),
+  ('South Park', '{"Animation","Comedy"}', 'Comedy Central', 25, 8.7, '80%');
