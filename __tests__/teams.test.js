@@ -7,9 +7,38 @@ describe('backend-express-template routes', () => {
   beforeEach(() => {
     return setup(pool);
   });
-  it('example test - delete me!', () => {
-    expect(1).toEqual(1);
+
+  it('GET /teams should return a list of teams', async () => {
+    const resp = await request(app).get('/teams');
+    expect(resp.status).toEqual(200);
+    expect(resp.body).toEqual([
+      {
+        id: 1,
+        name: 'Portland Trail Blazers',
+        league: 'NBA',
+        sport: 'basketball',
+      },
+      {
+        id: 2,
+        name: 'Colorado Avalanche',
+        league: 'NHL',
+        sport: 'hockey',
+      },
+      {
+        id: 3,
+        name: 'Portland Timbers',
+        league: 'MLS',
+        sport: 'soccer',
+      },
+      {
+        id: 4,
+        name: 'Chelsea FC',
+        league: 'EPL',
+        sport: 'soccer',
+      },
+    ]);
   });
+
   afterAll(() => {
     pool.end();
   });
