@@ -81,6 +81,13 @@ describe('backend-express-template routes', () => {
     expect(resp.body.active_players).toEqual('1,000,000');
   });
 
+  it('DELETE /video-games/:id should delete a video game', async () => {
+    const resp1 = await request(app).delete('/video-games/1');
+    expect(resp1.status).toEqual(200);
+    const resp2 = await request(app).get('/video-games/1');
+    expect(resp2.body).toEqual('');
+  });
+
   afterAll(() => {
     pool.end();
   });
