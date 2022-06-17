@@ -63,6 +63,12 @@ describe('backend-express-template routes', () => {
     expect(resp.body.type).toEqual('cat');
   });
 
+  it('PUT /pets/:id should update a pet', async () => {
+    const resp = await request(app).put('/pets/4').send({ age: 1 });
+    expect(resp.status).toEqual(200);
+    expect(resp.body.age).toEqual(1);
+  });
+
   afterAll(() => {
     pool.end();
   });
