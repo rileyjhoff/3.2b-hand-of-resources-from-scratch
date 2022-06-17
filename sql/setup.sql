@@ -91,3 +91,23 @@ VALUES
   ('APEX Legends', '{"FPS","Battle Royale"}', true, '360,428'),
   ('Lost Ark', '{"MMORPG","Action","Fantasy"}', true, '885,379'),
   ('Dota 2', '{"Multiplayer Online Battle Arena", "Strategy"}', true, '695,841');
+
+DROP TABLE IF EXISTS pets;
+
+CREATE TABLE pets (
+  id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  name TEXT NOT NULL,
+  age INT NOT NULL,
+  type TEXT NOT NULL
+);
+
+INSERT INTO pets (
+  name, 
+  age,
+  type
+  ) 
+VALUES 
+  ('Halle', 2, 'dog'),
+  ('Frankie', 1, 'dog'),
+  ('Winston', 14, 'cat'),
+  ('Otter', 0, 'cat');
