@@ -50,6 +50,19 @@ describe('backend-express-template routes', () => {
     });
   });
 
+  it('POST /pets should add a pet', async () => {
+    const resp = await request(app).post('/pets').send({
+      name: 'Pip',
+      age: 3,
+      type: 'cat',
+    });
+    expect(resp.status).toEqual(200);
+    expect(resp.body.id).not.toBeUndefined();
+    expect(resp.body.name).toEqual('Pip');
+    expect(resp.body.age).toEqual(3);
+    expect(resp.body.type).toEqual('cat');
+  });
+
   afterAll(() => {
     pool.end();
   });
